@@ -42,7 +42,7 @@ public class HomeFragment extends Fragment {
     private int multiplier;
     private int autoclick;
     boolean autoToggle = false;
-    private String key = "GodBlessThisHome";
+    private String key = "catCounter";
     MediaPlayer mp;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,7 +53,6 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
 
         // I am root
         return root;
@@ -66,14 +65,14 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
 
-        SharedPreferences prefs = getActivity().getSharedPreferences(key, Context.MODE_PRIVATE);
+         SharedPreferences prefs = getActivity().getSharedPreferences(key, Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = prefs.edit();
 
 
         score = prefs.getInt(key, 0);
 
-        ImageView imageView = (ImageView) getView().findViewById(R.id.catLeader);
-        final TextView textView = (TextView) getView().findViewById(R.id.counter);
+        ImageView imageView = getView().findViewById(R.id.catLeader);
+        final TextView textView = getView().findViewById(R.id.counter);
         Button autoClick = getView().findViewById((R.id.button));
 
         textView.setText(score + " Cats");
@@ -83,9 +82,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 bounceCat();
-                mp.start();
+                SharedPreferences prefs = getActivity().getSharedPreferences("meowEnabled", Context.MODE_PRIVATE);
+                boolean checkState = prefs.getBoolean("meowEnabled", true);
+               if (checkState)
+                    mp.start();
                 score++;
-                textView.setText(score + " Cats");
+               textView.setText(score + " Cats");
                 editor.putInt(key, score).commit();
 
             }

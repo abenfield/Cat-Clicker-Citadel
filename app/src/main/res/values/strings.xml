@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Cat Clicker Citadel</string>
-    <string name="title_home">Cat Clicker Citadel 🐈 0.1 build 10219</string>
+    <string name="title_home">Play</string>
     <string name="title_dashboard">View Cats</string>
     <string name="title_notifications">Shop</string>
+    <string name="title_settings">Settings</string>
+
     <string name="counter">0 Cats</string>
 </resources>
