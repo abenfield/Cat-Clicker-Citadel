@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="26dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FFC107"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00F32020"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/common_cat"
+                    android:layout_width="20dp"
+                    android:layout_height="211dp"
+                    android:layout_weight="1"
+                    android:background="#00CCCAC9"
+                    android:clickable="true"
+                    android:onClick="openDialog"
+                    android:tag="cat"
+                    app:srcCompat="@drawable/cat" />
+
+                <ImageView
+                    android:id="@+id/robot_cat"
+                    android:layout_width="138dp"
+                    android:layout_height="211dp"
+                    android:background="#00CCCAC9"
+                    android:onClick="openDialog"
+                    android:tag="robot_cat"
+                    app:srcCompat="@drawable/locked_cat" />
+
+                <ImageView
+                    android:id="@+id/pirate_cat"
+                    android:layout_width="20dp"
+                    android:layout_height="211dp"
+                    android:layout_weight="1"
+                    android:background="#00CCCAC9"
+                    android:onClick="openDialog"
+                    android:tag="pirate_cat"
+                    app:srcCompat="@drawable/locked_cat" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00F32020"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/weed_cat"
+                    android:layout_width="138dp"
+                    android:layout_height="211dp"
+                    android:background="#00CCCAC9"
+                    android:onClick="openDialog"
+                    android:tag="weed_cat"
+                    app:srcCompat="@drawable/locked_cat" />
+
+                <ImageView
+                    android:id="@+id/frankenstein_cat"
+                    android:layout_width="20dp"
+                    android:layout_height="211dp"
+                    android:layout_weight="1"
+                    android:background="#00CCCAC9"
+                    android:onClick="openDialog"
+                    android:tag="frankenstein_cat"
+                    app:srcCompat="@drawable/locked_cat" />
+
+                <ImageView
+                    android:id="@+id/null1"
+                    android:layout_width="20dp"
+                    android:layout_height="211dp"
+                    android:layout_weight="1"
+                    android:background="#00CCCAC9"
+                    android:tag="cat"
+                    app:srcCompat="@drawable/locked_cat" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00F32020"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/null2"
+                    android:layout_width="138dp"
+                    android:layout_height="211dp"
+                    android:background="#00CCCAC9"
+                    android:tag="cat"
+                    app:srcCompat="@drawable/locked_cat" />
+
+                <ImageView
+                    android:id="@+id/null3"
+                    android:layout_width="20dp"
+                    android:layout_height="211dp"
+                    android:layout_weight="1"
+                    android:background="#00CCCAC9"
+                    android:tag="cat"
+                    app:srcCompat="@drawable/locked_cat" />
+
+                <ImageView
+                    android:id="@+id/null4"
+                    android:layout_width="20dp"
+                    android:layout_height="211dp"
+                    android:layout_weight="1"
+                    android:background="#00CCCAC9"
+                    android:tag="cat"
+                    app:srcCompat="@drawable/locked_cat" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00F32020"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/null5"
+                    android:layout_width="138dp"
+                    android:layout_height="211dp"
+                    android:background="#00CCCAC9"
+                    android:tag="cat"
+                    app:srcCompat="@drawable/locked_cat" />
+
+                <ImageView
+                    android:id="@+id/null6"
+                    android:layout_width="20dp"
+                    android:layout_height="211dp"
+                    android:layout_weight="1"
+                    android:background="#00CCCAC9"
+                    android:tag="cat"
+                    app:srcCompat="@drawable/locked_cat" />
+
+                <ImageView
+                    android:id="@+id/null7"
+                    android:layout_width="20dp"
+                    android:layout_height="211dp"
+                    android:layout_weight="1"
+                    android:background="#00CCCAC9"
+                    android:tag="cat"
+                    app:srcCompat="@drawable/locked_cat" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00F32020"
+                android:orientation="horizontal"
+                android:paddingBottom="64sp">
+
+                <Button
+                    android:id="@+id/unlockButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Unlock All Cheat Code" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,15 @@
 package com.cis385.mssu.catclickercitadel.ui.settings;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -42,6 +46,35 @@ public class SettingsFragment extends Fragment {
         SharedPreferences prefs = getActivity().getSharedPreferences("meowEnabled", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = prefs.edit();
 
+        Button clearDataButton =  getView().findViewById(R.id.clearDataButton);
+
+        clearDataButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Delete your Data")
+                        .setMessage("Are you sure you want to delete ALL data? You will lose progress")
+
+
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                deleteCat("robot_cat");
+                                deleteCat("weed_cat");
+                                deleteCat("frankenstein_cat");
+                                deleteCat("pirate_cat");
+
+
+
+                            }
+                        })
+
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
+        });
 
 
         ToggleButton meowToggle = (ToggleButton) getView().findViewById(R.id.meowToggle);
@@ -64,5 +97,14 @@ public class SettingsFragment extends Fragment {
         });
     }
 
+    private void deleteCat(String catId) {
+        SharedPreferences Robotprefs = getActivity().getSharedPreferences(catId, Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = Robotprefs.edit();
 
+        editor.putBoolean(catId , false).commit();
     }
+
+
+}
+
+

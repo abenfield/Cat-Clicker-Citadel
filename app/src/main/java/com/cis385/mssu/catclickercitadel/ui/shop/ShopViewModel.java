@@ -1,16 +1,16 @@
-package com.cis385.mssu.catclickercitadel.ui.dashboard;
+package com.cis385.mssu.catclickercitadel.ui.shop;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class DashboardViewModel extends ViewModel {
+public class ShopViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public DashboardViewModel() {
+    public ShopViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Coming soon! :)");
+        mText.setValue("Store");
     }
 
     public LiveData<String> getText() {

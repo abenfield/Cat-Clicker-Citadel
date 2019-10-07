@@ -1,11 +1,15 @@
 package com.cis385.mssu.catclickercitadel;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cis385.mssu.catclickercitadel.ui.collection.CatSelectDialog;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+       
 
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
@@ -38,9 +43,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void toggleSound() {
+    public void openDialog(View v) {
+        String catId = v.getTag().toString();
+        identifyCat(catId);
 
 
+
+    }
+
+
+
+    public void identifyCat(String catId){
+
+        SharedPreferences prefs = this.getSharedPreferences(catId, Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = prefs.edit();
+
+        // Check if unlocked
+        if (catId.equals("cat") ||  (prefs.getBoolean(catId,false) == true)){
+
+
+            CatSelectDialog menu = new CatSelectDialog(this);
+            menu.showDialog(this, catId);
+        }
 
     }
 

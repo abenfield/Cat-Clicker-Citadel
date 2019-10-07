@@ -39,14 +39,17 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private int score;
-    private int multiplier;
+    private int multiplier = 1;
     private int autoclick;
     boolean autoToggle = false;
-    private String key = "catCounter";
+    private String catCounterKey = "catCounter";
+    private String currentCatKey = "currentCat";
     MediaPlayer mp;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
 
 
         mp = MediaPlayer.create(getContext(), R.raw.meow);
@@ -54,7 +57,6 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // I am root
         return root;
 
 
@@ -64,21 +66,30 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
+        ImageView catLeaderImage = getView().findViewById(R.id.catLeader);
+        TextView catLeaderName = getView().findViewById(R.id.catLeaderName);
 
-         SharedPreferences prefs = getActivity().getSharedPreferences(key, Context.MODE_PRIVATE);
+
+        CatLeader currentCat = new CatLeader(getContext());
+        catLeaderName.setText(currentCat.getCatName());
+        catLeaderImage.setImageResource(currentCat.getRestId());
+        multiplier = currentCat.multiplier;
+
+
+
+
+
+
+        SharedPreferences prefs = getActivity().getSharedPreferences(catCounterKey, Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = prefs.edit();
 
 
-        score = prefs.getInt(key, 0);
-
-        ImageView imageView = getView().findViewById(R.id.catLeader);
+        score = prefs.getInt(catCounterKey, 0);
         final TextView textView = getView().findViewById(R.id.counter);
-        Button autoClick = getView().findViewById((R.id.button));
 
         textView.setText(score + " Cats");
 
-
-        imageView.setOnClickListener(new View.OnClickListener() {
+        catLeaderImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 bounceCat();
@@ -86,15 +97,15 @@ public class HomeFragment extends Fragment {
                 boolean checkState = prefs.getBoolean("meowEnabled", true);
                if (checkState)
                     mp.start();
-                score++;
+                score = (multiplier) + score;
                textView.setText(score + " Cats");
-                editor.putInt(key, score).commit();
+                editor.putInt(catCounterKey, score).commit();
 
             }
         });
 
 
-        autoClick.setOnClickListener(new View.OnClickListener() {
+     /*   autoClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -120,13 +131,18 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
+*/
     }
 
 
+
+
     public void bounceCat() {
+        final TextView scoreText = getView().findViewById(R.id.score);
         final ImageView imageView = (ImageView) getView().findViewById(R.id.catLeader);
         final android.view.ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+        String scoreDisplay = "+" + multiplier;
+        scoreText.setText(scoreDisplay);
         layoutParams.width += 30;
         layoutParams.height += 30;
         layoutParams.width += 40;
@@ -135,6 +151,7 @@ public class HomeFragment extends Fragment {
         Handler h = new Handler();
         h.postDelayed(new Runnable() {
             public void run() {
+                scoreText.setText("");
                 layoutParams.width -= 30;
                 layoutParams.height -= 30;
                 layoutParams.width -= 40;
@@ -148,12 +165,12 @@ public class HomeFragment extends Fragment {
 
 
     public void autoClicker(){
-        SharedPreferences prefs = getActivity().getSharedPreferences(key, Context.MODE_PRIVATE);
+        SharedPreferences prefs = getActivity().getSharedPreferences(catCounterKey, Context.MODE_PRIVATE);
 
         final TextView textView = (TextView) getView().findViewById(R.id.counter);
         final SharedPreferences.Editor editor = prefs.edit();
 
-        editor.putInt(key, score).commit();
+        editor.putInt(catCounterKey, score).commit();
 
 
 
@@ -161,7 +178,7 @@ public class HomeFragment extends Fragment {
 
             score++;
             textView.setText(score + " Cats");
-            editor.putInt(key, score).commit();
+            editor.putInt(catCounterKey, score).commit();
         }
 
     }

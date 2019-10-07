@@ -1,16 +1,16 @@
-package com.cis385.mssu.catclickercitadel.ui.notifications;
+package com.cis385.mssu.catclickercitadel.ui.collection;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class CollectionViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public CollectionViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Coming soon! :)");
+        mText.setValue("Cat Collection");
     }
 
     public LiveData<String> getText() {

@@ -40,4 +40,16 @@
         android:text="ToggleButton"
         app:layout_constraintStart_toEndOf="@+id/meowEnabler"
         app:layout_constraintTop_toBottomOf="@+id/text_notifications" />
+
+    <Button
+        android:id="@+id/clearDataButton"
+        android:layout_width="142dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginRight="132dp"
+        android:layout_marginBottom="168dp"
+        android:background="#E71515"
+        android:text="Delete All Data"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,21 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/counter"
-        android:layout_width="342dp"
-        android:layout_height="190dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-        android:layout_marginTop="384dp"
-        android:background="#00D1D1D1"
-        android:text="@string/counter"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#DDDDDD"
-        android:textSize="52sp"
-        app:fontFamily="sans-serif-thin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/castle"
+        tools:layout_editor_absoluteX="95dp" />
 
     <ImageView
         android:id="@+id/catLeader"
@@ -33,33 +25,38 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cat" />
 
-    <Button
-        android:id="@+id/button"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="107dp"
-        android:layout_height="62dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="76dp"
-        android:text="Auto Click (1/sec)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <TextView
+        android:id="@+id/counter"
+        android:layout_width="224dp"
+        android:layout_height="137dp"
+        android:layout_marginStart="95dp"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="460dp"
+        android:background="#F1E4B8"
+        android:inputType="textMultiLine"
+        android:text="@string/counter"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#207F96"
+        android:textSize="52sp"
+        app:autoSizeTextType="none"
+        app:fontFamily="sans-serif-light"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/catLeaderName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="4dp"
         android:background="#ABD3EE"
+        android:gravity="center_horizontal"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
         android:text="Common House Cat"
         android:textColor="#E0E0E0"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/catLeaderLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/catLeaderLabel"
+        tools:layout_editor_absoluteX="32dp" />
 
     <TextView
         android:id="@+id/catLeaderLabel"
@@ -73,5 +70,29 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="95dp"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="115dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="41dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:textColor="#51F117"
+            android:textSize="36sp"
+            tools:layout_editor_absoluteX="4dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

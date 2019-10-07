@@ -1,4 +1,4 @@
-package com.cis385.mssu.catclickercitadel.ui.dashboard;
+package com.cis385.mssu.catclickercitadel.ui.shop;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,22 +14,31 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.cis385.mssu.catclickercitadel.R;
 
-public class DashboardFragment extends Fragment {
+public class ShopFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private ShopViewModel notificationsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(this, new Observer<String>() {
+        notificationsViewModel =
+                ViewModelProviders.of(this).get(ShopViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_shop, container, false);
+        final TextView textView = root.findViewById(R.id.text_notifications);
+        notificationsViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
+
+
+
+
+
+
         return root;
     }
+
+
+
 }

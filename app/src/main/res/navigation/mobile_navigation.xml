@@ -13,15 +13,15 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.cis385.mssu.catclickercitadel.ui.dashboard.DashboardFragment"
+        android:name="com.cis385.mssu.catclickercitadel.ui.collection.CollectionFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_collection" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.cis385.mssu.catclickercitadel.ui.notifications.NotificationsFragment"
+        android:name="com.cis385.mssu.catclickercitadel.ui.shop.ShopFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_shop" />
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.cis385.mssu.catclickercitadel.ui.settings.SettingsFragment"
