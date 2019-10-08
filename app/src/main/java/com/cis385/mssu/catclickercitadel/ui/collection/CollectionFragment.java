@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.cis385.mssu.catclickercitadel.CatDictionary;
 import com.cis385.mssu.catclickercitadel.R;
 
 import java.util.Map;
@@ -47,10 +48,12 @@ public class CollectionFragment extends Fragment {
 
 
 
-        checkUnlockables("robot_cat");
-       checkUnlockables("frankenstein_cat");
-        checkUnlockables("weed_cat");
-        checkUnlockables("pirate_cat");
+
+        for (String temp : CatDictionary.catId) {
+            checkUnlockables(temp);
+        }
+
+
 
 
         Button unlockButton = getView().findViewById(R.id.unlockButton);
@@ -59,10 +62,7 @@ public class CollectionFragment extends Fragment {
         unlockButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               unlock("robot_cat");
-                unlock("frankenstein_cat");
-                unlock("weed_cat");
-                unlock("pirate_cat");
+            unlockAll();
 
 
             }
@@ -71,19 +71,23 @@ public class CollectionFragment extends Fragment {
     }
 
 
-    private void unlock(String catId){
+
+
+
+    private void unlockAll(){
+        for (String catId : CatDictionary.catId) {
         SharedPreferences prefs = getActivity().getSharedPreferences(catId, Context.MODE_PRIVATE);
-         SharedPreferences.Editor editor = prefs.edit();
+        SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean(catId, true).commit();
-
-
+        }
 
     }
     private void checkUnlockables(String catId) {
 
 
         int imgId = getContext().getResources().getIdentifier(catId, "id", "com.cis385.mssu.catclickercitadel");
-        ImageView imageCat = (ImageView) getView().findViewById(imgId);
+       try{ ImageView imageCat = (ImageView) getView().findViewById(imgId);
+
 
 
         SharedPreferences prefs = getActivity().getSharedPreferences(catId, Context.MODE_PRIVATE);
@@ -95,6 +99,10 @@ public class CollectionFragment extends Fragment {
             imageCat.setImageResource(resId);
 
             }
+       }
+       catch (Exception e){
+
+       }
 
         }
 

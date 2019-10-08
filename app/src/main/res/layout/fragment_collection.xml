@@ -95,12 +95,13 @@
                     app:srcCompat="@drawable/locked_cat" />
 
                 <ImageView
-                    android:id="@+id/null1"
+                    android:id="@+id/real_cat"
                     android:layout_width="20dp"
                     android:layout_height="211dp"
                     android:layout_weight="1"
                     android:background="#00CCCAC9"
-                    android:tag="cat"
+                    android:onClick="openDialog"
+                    android:tag="real_cat"
                     app:srcCompat="@drawable/locked_cat" />
 
             </LinearLayout>

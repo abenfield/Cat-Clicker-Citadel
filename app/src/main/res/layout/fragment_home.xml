@@ -5,6 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="95dp"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="115dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="41dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:textColor="#51F117"
+            android:textSize="36sp"
+            tools:layout_editor_absoluteX="4dp" />
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
@@ -27,12 +51,10 @@
 
     <TextView
         android:id="@+id/counter"
-        android:layout_width="224dp"
-        android:layout_height="137dp"
-        android:layout_marginStart="95dp"
-        android:layout_marginLeft="95dp"
-        android:layout_marginTop="460dp"
-        android:background="#F1E4B8"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="420dp"
+        android:background="#ABD3EE"
         android:inputType="textMultiLine"
         android:text="@string/counter"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -70,29 +92,5 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="95dp"
-        android:layout_marginLeft="95dp"
-        android:layout_marginTop="115dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/score"
-            android:layout_width="41dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:textColor="#51F117"
-            android:textSize="36sp"
-            tools:layout_editor_absoluteX="4dp" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.cis385.mssu.catclickercitadel.CatDictionary;
 import com.cis385.mssu.catclickercitadel.R;
 
 public class SettingsFragment extends Fragment {
@@ -59,10 +60,13 @@ public class SettingsFragment extends Fragment {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
-                                deleteCat("robot_cat");
-                                deleteCat("weed_cat");
-                                deleteCat("frankenstein_cat");
-                                deleteCat("pirate_cat");
+                                for (String temp : CatDictionary.catId) {
+                                    System.out.println(temp);
+                                    deleteCat(temp);
+                                }
+
+
+
 
 
 
