@@ -19,41 +19,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/lootBox"
-        android:layout_width="318dp"
-        android:layout_height="285dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="196dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_notifications"
-        app:srcCompat="@drawable/box_close" />
-
-    <ImageView
-        android:id="@+id/prize"
-        android:layout_width="235dp"
-        android:layout_height="285dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
-        android:layout_marginBottom="43dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/lootBox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_notifications"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/locked_cat" />
-
-    <TextView
-        android:id="@+id/unlockText"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/lootButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="116dp"
-        android:background="#3BE652FF"
-        android:text="You unlocked a meme!"
-        android:textSize="30sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginStart="144dp"
+        android:layout_marginLeft="144dp"
+        android:layout_marginTop="152dp"
+        android:text="LootBox Time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_notifications" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
