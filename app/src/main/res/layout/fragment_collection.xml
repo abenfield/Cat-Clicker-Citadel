@@ -113,29 +113,32 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/null2"
+                    android:id="@+id/black_cat"
                     android:layout_width="138dp"
                     android:layout_height="211dp"
                     android:background="#00CCCAC9"
-                    android:tag="cat"
+                    android:onClick="openDialog"
+                    android:tag="black_cat"
                     app:srcCompat="@drawable/locked_cat" />
 
                 <ImageView
-                    android:id="@+id/null3"
+                    android:id="@+id/witch_cat"
                     android:layout_width="20dp"
                     android:layout_height="211dp"
                     android:layout_weight="1"
                     android:background="#00CCCAC9"
-                    android:tag="cat"
+                    android:onClick="openDialog"
+                    android:tag="witch_cat"
                     app:srcCompat="@drawable/locked_cat" />
 
                 <ImageView
-                    android:id="@+id/null4"
+                    android:id="@+id/ghost_cat"
                     android:layout_width="20dp"
                     android:layout_height="211dp"
                     android:layout_weight="1"
                     android:background="#00CCCAC9"
-                    android:tag="cat"
+                    android:onClick="openDialog"
+                    android:tag="ghost_cat"
                     app:srcCompat="@drawable/locked_cat" />
 
             </LinearLayout>
@@ -147,11 +150,12 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/null5"
+                    android:id="@+id/wizard_cat"
                     android:layout_width="138dp"
                     android:layout_height="211dp"
                     android:background="#00CCCAC9"
-                    android:tag="cat"
+                    android:onClick="openDialog"
+                    android:tag="wizard_cat"
                     app:srcCompat="@drawable/locked_cat" />
 
                 <ImageView
