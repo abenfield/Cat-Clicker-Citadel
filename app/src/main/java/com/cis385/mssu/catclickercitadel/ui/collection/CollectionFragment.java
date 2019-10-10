@@ -63,7 +63,9 @@ public class CollectionFragment extends Fragment {
             @Override
             public void onClick(View view) {
             unlockAll();
-
+                for (String temp : CatDictionary.catId) {
+                    checkUnlockables(temp);
+                }
 
             }
         });

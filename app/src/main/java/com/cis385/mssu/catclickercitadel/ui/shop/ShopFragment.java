@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.cis385.mssu.catclickercitadel.CatDictionary;
 import com.cis385.mssu.catclickercitadel.LootBoxActivity;
 import com.cis385.mssu.catclickercitadel.R;
+import com.cis385.mssu.catclickercitadel.ui.collection.CatSelectDialog;
 import com.cis385.mssu.catclickercitadel.ui.collection.CollectionFragment;
 
 import java.util.Collection;
@@ -31,7 +32,9 @@ import java.util.Random;
 
 
 public class ShopFragment extends Fragment {
-    int tapCount = 0;
+
+    int lootBoxCount;
+    String lootBoxCounterKey = "lootBoxCounter";
 
     private ShopViewModel notificationsViewModel;
 
@@ -54,13 +57,59 @@ public class ShopFragment extends Fragment {
 
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        final View finalView = view;
+        updateLootBox(view);
+
+
         Button lootBoxButton = view.findViewById(R.id.lootButton);
+        Button openExchangeButton = view.findViewById(R.id.openExchangeButton);
+        Button buyLootBoxButton = view.findViewById(R.id.buyLootBoxButton);
+
         lootBoxButton.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              Intent myIntent = new Intent(getActivity(), LootBoxActivity.class);
-startActivity(myIntent);
+                if (lootBoxCount >  0) {
+                    Intent myIntent = new Intent(getActivity(), LootBoxActivity.class);
+                    startActivity(myIntent);
+                }
+
           }});
+
+        openExchangeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CatExchangeDialog menu = new CatExchangeDialog(getContext());
+                menu.showDialog(getActivity());
+            }});
+        buyLootBoxButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BuyLootBoxDialog menu = new BuyLootBoxDialog(getContext());
+                menu.showDialog(getActivity());
+            }});
+
+
+
+
+
+
         }
+
+    private void updateLootBox(View view) {
+
+        SharedPreferences prefs = getActivity().getSharedPreferences(lootBoxCounterKey, Context.MODE_PRIVATE);
+        lootBoxCount = prefs.getInt(lootBoxCounterKey, 0);
+        TextView lootBoxText = view.findViewById(R.id.lootBoxCount);
+
+        lootBoxText.setText("You currently have " + lootBoxCount + " loot boxes");
+
+        if (lootBoxCount == 0) {
+            Button lootBoxButton = view.findViewById(R.id.lootButton);
+            lootBoxButton.setBackgroundColor(getResources().getColor(R.color.colorGray));
+        }
+
+
     }
+}
 

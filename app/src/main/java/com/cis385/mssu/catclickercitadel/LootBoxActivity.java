@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -17,12 +18,14 @@ import android.widget.TextView;
 
 import com.cis385.mssu.catclickercitadel.R;
 import com.cis385.mssu.catclickercitadel.ui.collection.CollectionFragment;
+import com.cis385.mssu.catclickercitadel.ui.shop.ShopFragment;
 
 import java.util.Random;
 
 public class LootBoxActivity extends AppCompatActivity {
 
     int tapCount = 0;
+    String lootBoxCounterKey = "lootBoxCounter";
 
 
     @Override
@@ -39,7 +42,7 @@ public class LootBoxActivity extends AppCompatActivity {
 
         final ImageView lootBox = findViewById(R.id.lootBox);
         final ImageView prize = findViewById(R.id.prize);
-
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.spin);
         lootBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +55,7 @@ public class LootBoxActivity extends AppCompatActivity {
                     lootBox.setImageResource(R.drawable.box_almost);
                 if (tapCount == 3) {
                     lootBox.setImageResource(R.drawable.box_opened);
-
+                    mp.start();
                     prize.setVisibility(View.VISIBLE);
 
 
@@ -130,7 +133,7 @@ public class LootBoxActivity extends AppCompatActivity {
                     handler9.postDelayed(new Runnable() {
                         public void run() {
             Intent myIntent = new Intent(LootBoxActivity.this, MainActivity.class);
-
+    
                             startActivity(myIntent);
 
 
@@ -180,11 +183,20 @@ public class LootBoxActivity extends AppCompatActivity {
         prizeImage.setImageResource(resId);
         winnerMsg.setVisibility(View.VISIBLE);
         winnerMsg.setText("You unlocked " + CatDictionary.catLookup(catId,"name"));
+        decrementLootBox();
         unlock(catId);
 
 
 
     }
+
+    private void decrementLootBox() {
+        SharedPreferences prefs = getSharedPreferences(lootBoxCounterKey, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+       int lootBoxCount = prefs.getInt(lootBoxCounterKey,1);
+       editor.putInt(lootBoxCounterKey, lootBoxCount - 1).commit();
+    }
+
     public void unlock(String catId){
         SharedPreferences prefs = getSharedPreferences(catId, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();

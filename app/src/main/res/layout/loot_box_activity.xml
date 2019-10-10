@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/minigame"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#AB7FE2">
 
     <TextView
         android:id="@+id/text_notifications"
@@ -50,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="116dp"
         android:background="#3BE652FF"
+        android:gravity="center_horizontal"
         android:text="You unlocked a meme!"
         android:textSize="30sp"
         android:visibility="invisible"

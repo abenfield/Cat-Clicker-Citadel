@@ -46,9 +46,6 @@ public class MainActivity extends AppCompatActivity {
     public void openDialog(View v) {
         String catId = v.getTag().toString();
         identifyCat(catId);
-
-
-
     }
 
 

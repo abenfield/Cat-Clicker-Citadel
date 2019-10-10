@@ -13,7 +13,17 @@ import java.util.Set;
 
 public class CatDictionary {
 
-    public static List<String> catId = Arrays.asList("cat", "robot_cat", "frankenstein_cat", "weed_cat", "pirate_cat","real_cat","ghost_cat","black_cat","witch_cat","wizard_cat");
+    public static List<String> catId = Arrays.asList(
+            "cat",
+            "robot_cat",
+            "frankenstein_cat",
+            "weed_cat",
+            "pirate_cat",
+            "real_cat",
+            "ghost_cat",
+            "black_cat",
+            "witch_cat",
+            "wizard_cat");
 
 
     public static String catLookup(String catId, String searchKey){

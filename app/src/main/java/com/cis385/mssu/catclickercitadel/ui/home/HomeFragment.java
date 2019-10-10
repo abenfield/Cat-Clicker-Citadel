@@ -5,39 +5,26 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.cis385.mssu.catclickercitadel.MainActivity;
 import com.cis385.mssu.catclickercitadel.R;
 
 import org.w3c.dom.Text;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.prefs.Preferences;
-
-import static android.content.Context.MODE_PRIVATE;
-
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    private int yarnCount;
+    private String yarnCounterKey = "yarnCounter";
     private int score;
     private int multiplier = 1;
     private int autoclick;
@@ -75,7 +62,7 @@ public class HomeFragment extends Fragment {
         catLeaderImage.setImageResource(currentCat.getRestId());
         multiplier = currentCat.multiplier;
 
-
+        setYarnCounter();
 
 
 
@@ -85,7 +72,7 @@ public class HomeFragment extends Fragment {
 
 
         score = prefs.getInt(catCounterKey, 0);
-        final TextView textView = getView().findViewById(R.id.counter);
+        final TextView textView = getView().findViewById(R.id.catCounter);
 
         textView.setText(score + " Cats");
 
@@ -134,7 +121,13 @@ public class HomeFragment extends Fragment {
 */
     }
 
+    private void setYarnCounter() {
+        SharedPreferences prefs = getActivity().getSharedPreferences(yarnCounterKey, Context.MODE_PRIVATE);
+        yarnCount = prefs.getInt(yarnCounterKey, 0);
+        TextView yarnCountText = getView().findViewById(R.id.yarn_counter);
+        yarnCountText.setText(String.valueOf(yarnCount));
 
+    }
 
 
     public void bounceCat() {
@@ -167,7 +160,7 @@ public class HomeFragment extends Fragment {
     public void autoClicker(){
         SharedPreferences prefs = getActivity().getSharedPreferences(catCounterKey, Context.MODE_PRIVATE);
 
-        final TextView textView = (TextView) getView().findViewById(R.id.counter);
+        final TextView textView = (TextView) getView().findViewById(R.id.catCounter);
         final SharedPreferences.Editor editor = prefs.edit();
 
         editor.putInt(catCounterKey, score).commit();

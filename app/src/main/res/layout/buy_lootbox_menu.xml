@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffffff">
+
+    <ImageView
+        android:id="@+id/a"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="#DA5F6A"
+        android:gravity="center"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_play" />
+
+    <ImageView
+        android:id="@+id/selectedCat"
+        android:layout_width="313dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/text_dialog"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/box_close" />
+
+    <TextView
+        android:id="@+id/exchangeRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/selectedCat"
+        android:layout_centerHorizontal="true"
+        android:text="3 Yarn for a Lootbox"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/currentYarnCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/exchangeRate"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+
+        android:text="You currently have ## Yarn"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/text_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/a"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
+        android:text="Are you sure you want to trade Yarn for Lootbox?"
+        android:textColor="#ff000000"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/select_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentYarnCount"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="@color/colorPrimary"
+        android:text="Deal" />
+
+    <Button
+        android:id="@+id/close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentYarnCount"
+        android:layout_marginLeft="25dp"
+        android:layout_toRightOf="@id/select_button"
+        android:background="@color/colorAccent"
+        android:text="Close"
+        tools:text="Close" />
+
+</RelativeLayout>
