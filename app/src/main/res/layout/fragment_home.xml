@@ -8,13 +8,12 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="95dp"
-        android:layout_marginLeft="95dp"
-        android:layout_marginTop="115dp"
+        android:layout_height="440dp"
+        android:layout_marginTop="60dp"
+        android:background="#D5BCF3ED"
         android:orientation="vertical"
+        app:layout_constrainedWidth="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -33,6 +32,7 @@
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#00BB0C0C"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/castle"
         tools:layout_editor_absoluteX="95dp" />
@@ -50,47 +50,56 @@
         app:srcCompat="@drawable/cat" />
 
     <TextView
-        android:id="@+id/counter"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="420dp"
-        android:background="#ABD3EE"
-        android:inputType="textMultiLine"
-        android:text="@string/counter"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#207F96"
-        android:textSize="52sp"
-        app:autoSizeTextType="none"
-        app:fontFamily="sans-serif-light"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/catLeaderName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ABD3EE"
+        android:background="#D7B3B1B1"
         android:gravity="center_horizontal"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
         android:text="Common House Cat"
-        android:textColor="#E0E0E0"
+        android:textColor="#222222"
         android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@+id/catLeaderLabel"
         tools:layout_editor_absoluteX="32dp" />
 
     <TextView
         android:id="@+id/catLeaderLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="5dp"
+        android:background="#00EE1313"
         android:text="Current Cat Leader:"
         android:textColor="#E0E0E0"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/counter"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="420dp"
+            android:background="#ABD3EE"
+            android:inputType="textMultiLine"
+            android:text="@string/counter"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#207F96"
+            android:textSize="52sp"
+            app:autoSizeTextType="none"
+            app:fontFamily="sans-serif-light"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
