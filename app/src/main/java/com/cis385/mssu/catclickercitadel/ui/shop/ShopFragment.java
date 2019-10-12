@@ -21,12 +21,13 @@ import com.cis385.mssu.catclickercitadel.LootBoxActivity;
 import com.cis385.mssu.catclickercitadel.R;
 import com.cis385.mssu.catclickercitadel.dialogs.BuyLootBoxDialog;
 import com.cis385.mssu.catclickercitadel.dialogs.CatExchangeDialog;
+import com.cis385.mssu.catclickercitadel.dialogs.InsufficientFundsDialog;
 
 
 public class ShopFragment extends Fragment {
 
     int lootBoxCount;
-
+    public static RefreshBool refreshBool = new RefreshBool();
     private ShopViewModel notificationsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,6 +54,13 @@ public class ShopFragment extends Fragment {
         updateLootBox(view);
 
 
+        refreshBool.setListener(new RefreshBool.ChangeListener() {
+            @Override
+            public void onChange() {
+                updateLootBox(finalView);
+            }
+        });
+
         Button lootBoxButton = view.findViewById(R.id.lootButton);
         Button openExchangeButton = view.findViewById(R.id.openExchangeButton);
         Button buyLootBoxButton = view.findViewById(R.id.buyLootBoxButton);
@@ -70,15 +78,27 @@ public class ShopFragment extends Fragment {
         openExchangeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CatExchangeDialog menu = new CatExchangeDialog(getContext());
-                menu.showDialog(getActivity());
-            }});
+                if (CatContext.getIntRecord("catCounter", getContext()) >= 10000){
+                    CatExchangeDialog menu = new CatExchangeDialog(getContext());
+                    menu.showDialog(getActivity());
+                }
+                      else {
+                    InsufficientFundsDialog menu = new InsufficientFundsDialog(getContext());
+                    menu.showDialog(getActivity());
+                }}});
+
         buyLootBoxButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BuyLootBoxDialog menu = new BuyLootBoxDialog(getContext());
-                menu.showDialog(getActivity());
 
+                if (CatContext.getIntRecord("yarnCounter", getContext()) >= 3) {
+                    BuyLootBoxDialog menu = new BuyLootBoxDialog(getContext());
+                    menu.showDialog(getActivity());
+                }
+                else {
+                    InsufficientFundsDialog menu = new InsufficientFundsDialog(getContext());
+                    menu.showDialog(getActivity());
+                }
 
             }});
 
@@ -88,6 +108,8 @@ public class ShopFragment extends Fragment {
 
 
         }
+
+
 
     public void updateLootBox(View view) {
 
@@ -95,11 +117,11 @@ public class ShopFragment extends Fragment {
         TextView lootBoxText = view.findViewById(R.id.lootBoxCount);
 
         lootBoxText.setText("You currently have " + lootBoxCount + " loot boxes");
-
-        if (lootBoxCount == 0) {
-            Button lootBoxButton = view.findViewById(R.id.lootButton);
+        Button lootBoxButton = view.findViewById(R.id.lootButton);
+        if (lootBoxCount == 0)
             lootBoxButton.setBackgroundColor(getResources().getColor(R.color.colorGray));
-        }
+        else
+            lootBoxButton.setBackgroundColor(getResources().getColor(R.color.lootBoxButton));
 
 
     }

@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/selectedCat"
         android:layout_centerHorizontal="true"
-        android:text="10,000 Cats for 1 Yarn"
+        android:text="10,000 Cats for 3 Yarn"
         android:textSize="18sp" />
 
     <TextView

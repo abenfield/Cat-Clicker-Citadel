@@ -17,10 +17,10 @@ import com.cis385.mssu.catclickercitadel.MainActivity;
 import com.cis385.mssu.catclickercitadel.R;
 import com.cis385.mssu.catclickercitadel.ui.shop.ShopFragment;
 
-public class BuyLootBoxDialog  {
+public class InsufficientFundsDialog {
     private Context context;
     int yarnCount;
-    public BuyLootBoxDialog(Context current){
+    public InsufficientFundsDialog(Context current){
         this.context = current;
     }
 
@@ -33,13 +33,10 @@ public class BuyLootBoxDialog  {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        dialog.setContentView(R.layout.buy_lootbox_menu);
+        dialog.setContentView(R.layout.insufficient_funds_menu);
 
         Button okButton = (Button) dialog.findViewById(R.id.close_button);
-        Button selectButton = (Button) dialog.findViewById(R.id.select_button);
 
-        getYarnCount(activity);
-        changeCounterText(dialog);
 
 
 
@@ -52,24 +49,7 @@ public class BuyLootBoxDialog  {
             }
         });
 
-        selectButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-
-
-
-               if (yarnCount >= 3) {
-                   decrementYarn(activity);
-                   incrementLootBox(activity);
-                    updateYarnCounter(activity);
-               }
-               ShopFragment.refreshBool.setBoo(true);
-               dialog.dismiss();
-
-
-            }
-        });
 
         dialog.show();
 
@@ -91,18 +71,9 @@ public class BuyLootBoxDialog  {
 
     }
 
-    private void getYarnCount(Activity activity) {
-       yarnCount = CatContext.getIntRecord("yarnCounter",context);
 
-    }
 
-    private void changeCounterText(Dialog dialog) {
 
-        TextView counterText = dialog.findViewById(R.id.currentYarnCount);
-
-        counterText.setText("You currently have " + yarnCount + " yarn.");
-
-    }
 
     private void updateYarnCounter(Activity activity) {
         int yarnCount = CatContext.getIntRecord("yarnCounter",context);
