@@ -133,7 +133,7 @@ public class LootBoxActivity extends AppCompatActivity {
                     handler9.postDelayed(new Runnable() {
                         public void run() {
             Intent myIntent = new Intent(LootBoxActivity.this, MainActivity.class);
-    
+
                             startActivity(myIntent);
 
 
@@ -191,16 +191,16 @@ public class LootBoxActivity extends AppCompatActivity {
     }
 
     private void decrementLootBox() {
-        SharedPreferences prefs = getSharedPreferences(lootBoxCounterKey, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-       int lootBoxCount = prefs.getInt(lootBoxCounterKey,1);
-       editor.putInt(lootBoxCounterKey, lootBoxCount - 1).commit();
+
+       int lootBoxCount = CatContext.getIntRecord("lootBoxCounter",getApplicationContext());
+
+        CatContext.setIntRecord("lootBoxCounter",getApplicationContext(), lootBoxCount - 1);
+
     }
 
     public void unlock(String catId){
-        SharedPreferences prefs = getSharedPreferences(catId, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean(catId, true).commit();
+        CatContext.setBoolRecord(catId,getApplicationContext(), true);
+
 
     }
 

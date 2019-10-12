@@ -1,4 +1,4 @@
-package com.cis385.mssu.catclickercitadel.ui.shop;
+package com.cis385.mssu.catclickercitadel.dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -9,6 +9,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.cis385.mssu.catclickercitadel.CatContext;
 import com.cis385.mssu.catclickercitadel.R;
 
 public class CatExchangeDialog {
@@ -52,6 +53,7 @@ public class CatExchangeDialog {
                if (catCount >= 10000) {
                    decrementCats(activity);
                    incrementYarn(activity);
+                   updateYarnCounter(activity);
                }
 
                dialog.dismiss();
@@ -66,26 +68,20 @@ public class CatExchangeDialog {
 
     private void decrementCats(Activity activity) {
 
-       SharedPreferences prefs = activity.getSharedPreferences("catCounter", Context.MODE_PRIVATE);
-        final SharedPreferences.Editor editor = prefs.edit();
-
-        editor.putInt("catCounter", catCount - 10000 ).commit();
+        CatContext.setIntRecord("catCounter",context, catCount - 10000);
     }
 
     private void incrementYarn(Activity activity) {
 
-        SharedPreferences prefs = activity.getSharedPreferences("yarnCounter", Context.MODE_PRIVATE);
-        final SharedPreferences.Editor editor = prefs.edit();
+       int yarnCount = CatContext.getIntRecord("yarnCounter",context);
 
-        int currentYarnCount = prefs.getInt("yarnCounter", Context.MODE_PRIVATE);
-        editor.putInt("yarnCounter", currentYarnCount + 3).commit();
-
-
+        CatContext.setIntRecord("yarnCounter",context, yarnCount + 3);
     }
 
     private void getCatCount(Activity activity) {
-        SharedPreferences prefs = activity.getSharedPreferences("catCounter", Context.MODE_PRIVATE);
-        catCount = prefs.getInt("catCounter", 0);
+
+        catCount =  CatContext.getIntRecord("catCounter",context);
+
     }
 
     private void changeCounterText(Dialog dialog) {
@@ -96,7 +92,12 @@ public class CatExchangeDialog {
 
     }
 
+    private void updateYarnCounter(Activity activity) {
+        int yarnCount = CatContext.getIntRecord("yarnCounter",context);
+        TextView yarnCountText = activity.findViewById(R.id.yarnCounter);
+        yarnCountText.setText(String.valueOf(yarnCount));
 
+    }
 
 }
 

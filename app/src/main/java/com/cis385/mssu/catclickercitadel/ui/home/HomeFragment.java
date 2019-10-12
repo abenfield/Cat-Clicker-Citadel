@@ -16,21 +16,23 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.cis385.mssu.catclickercitadel.CatContext;
+import com.cis385.mssu.catclickercitadel.MainActivity;
 import com.cis385.mssu.catclickercitadel.R;
 
 import org.w3c.dom.Text;
+
+
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private int yarnCount;
-    private String yarnCounterKey = "yarnCounter";
     private int score;
-    private int multiplier = 1;
+    private int multiplier;
     private int autoclick;
     boolean autoToggle = false;
-    private String catCounterKey = "catCounter";
-    private String currentCatKey = "currentCat";
+
     MediaPlayer mp;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -60,18 +62,16 @@ public class HomeFragment extends Fragment {
         CatLeader currentCat = new CatLeader(getContext());
         catLeaderName.setText(currentCat.getCatName());
         catLeaderImage.setImageResource(currentCat.getRestId());
-        multiplier = currentCat.multiplier;
+        multiplier = currentCat.getMultiplier();
 
-        setYarnCounter();
-
-
+        updateYarnCounter();
 
 
-        SharedPreferences prefs = getActivity().getSharedPreferences(catCounterKey, Context.MODE_PRIVATE);
-        final SharedPreferences.Editor editor = prefs.edit();
 
 
-        score = prefs.getInt(catCounterKey, 0);
+
+
+        score = CatContext.getIntRecord("catCounter",getContext());
         final TextView textView = getView().findViewById(R.id.catCounter);
 
         textView.setText(score + " Cats");
@@ -86,45 +86,16 @@ public class HomeFragment extends Fragment {
                     mp.start();
                 score = (multiplier) + score;
                textView.setText(score + " Cats");
-                editor.putInt(catCounterKey, score).commit();
+                CatContext.setIntRecord("catCounter",getContext(),score + 1);
 
             }
         });
 
-
-     /*   autoClick.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Timer t = new Timer();
-                TimerTask tt = new TimerTask() {
-                    @Override
-                    public void run() {
-                        autoClicker();
-                    }
-
-                    ;
-                };
-
-                if (autoToggle == true) {
-
-                }
-                if (autoToggle == false) {
-                    autoToggle = true;
-                    t.schedule(tt, 1000);
-
-                }
-
-
-            }
-        });
-*/
     }
 
-    private void setYarnCounter() {
-        SharedPreferences prefs = getActivity().getSharedPreferences(yarnCounterKey, Context.MODE_PRIVATE);
-        yarnCount = prefs.getInt(yarnCounterKey, 0);
-        TextView yarnCountText = getView().findViewById(R.id.yarn_counter);
+    private void updateYarnCounter() {
+      yarnCount = CatContext.getIntRecord("yarnCounter",getContext());
+        TextView yarnCountText = getActivity().findViewById(R.id.yarnCounter);
         yarnCountText.setText(String.valueOf(yarnCount));
 
     }
@@ -158,20 +129,15 @@ public class HomeFragment extends Fragment {
 
 
     public void autoClicker(){
-        SharedPreferences prefs = getActivity().getSharedPreferences(catCounterKey, Context.MODE_PRIVATE);
 
         final TextView textView = (TextView) getView().findViewById(R.id.catCounter);
-        final SharedPreferences.Editor editor = prefs.edit();
-
-        editor.putInt(catCounterKey, score).commit();
-
 
 
         while (true) {
 
             score++;
             textView.setText(score + " Cats");
-            editor.putInt(catCounterKey, score).commit();
+            CatContext.setIntRecord("catCounter",getContext(),score);
         }
 
     }

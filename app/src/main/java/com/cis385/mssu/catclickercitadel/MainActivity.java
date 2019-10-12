@@ -3,13 +3,10 @@ package com.cis385.mssu.catclickercitadel;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.cis385.mssu.catclickercitadel.ui.collection.CatSelectDialog;
+import com.cis385.mssu.catclickercitadel.dialogs.CatSelectDialog;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;

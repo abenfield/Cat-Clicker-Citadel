@@ -1,4 +1,4 @@
-package com.cis385.mssu.catclickercitadel.ui.collection;
+package com.cis385.mssu.catclickercitadel.dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -9,6 +9,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.cis385.mssu.catclickercitadel.CatContext;
 import com.cis385.mssu.catclickercitadel.R;
 
 public class CatSelectDialog  {
@@ -45,9 +46,7 @@ public class CatSelectDialog  {
 
             @Override
             public void onClick(View v) {
-                SharedPreferences prefs = context.getSharedPreferences("currentCat", Context.MODE_PRIVATE);
-                final   SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("currentCat",catName).commit();
+                CatContext.setStringRecord("currentCat", context, catName );
                 dialog.dismiss();
             }
         });

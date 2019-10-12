@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.cis385.mssu.catclickercitadel.CatContext;
 import com.cis385.mssu.catclickercitadel.CatDictionary;
 import com.cis385.mssu.catclickercitadel.R;
 
@@ -77,18 +78,16 @@ public class CollectionFragment extends Fragment {
 
 
     private void unlockAll(){
-        for (String catId : CatDictionary.catId) {
-        SharedPreferences prefs = getActivity().getSharedPreferences(catId, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean(catId, true).commit();
-        }
+        for (String catId : CatDictionary.catId)
+            CatContext.setBoolRecord(catId,getContext(),true);
 
     }
     private void checkUnlockables(String catId) {
 
 
         int imgId = getContext().getResources().getIdentifier(catId, "id", "com.cis385.mssu.catclickercitadel");
-       try{ ImageView imageCat = (ImageView) getView().findViewById(imgId);
+       try  {
+           ImageView imageCat = (ImageView) getView().findViewById(imgId);
 
 
 

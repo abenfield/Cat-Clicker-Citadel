@@ -4,37 +4,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.cis385.mssu.catclickercitadel.CatDictionary;
+import com.cis385.mssu.catclickercitadel.CatContext;
 import com.cis385.mssu.catclickercitadel.LootBoxActivity;
 import com.cis385.mssu.catclickercitadel.R;
-import com.cis385.mssu.catclickercitadel.ui.collection.CatSelectDialog;
-import com.cis385.mssu.catclickercitadel.ui.collection.CollectionFragment;
-
-import java.util.Collection;
-import java.util.Random;
+import com.cis385.mssu.catclickercitadel.dialogs.BuyLootBoxDialog;
+import com.cis385.mssu.catclickercitadel.dialogs.CatExchangeDialog;
 
 
 public class ShopFragment extends Fragment {
 
     int lootBoxCount;
-    String lootBoxCounterKey = "lootBoxCounter";
 
     private ShopViewModel notificationsViewModel;
 
@@ -87,6 +78,8 @@ public class ShopFragment extends Fragment {
             public void onClick(View v) {
                 BuyLootBoxDialog menu = new BuyLootBoxDialog(getContext());
                 menu.showDialog(getActivity());
+
+
             }});
 
 
@@ -96,10 +89,9 @@ public class ShopFragment extends Fragment {
 
         }
 
-    private void updateLootBox(View view) {
+    public void updateLootBox(View view) {
 
-        SharedPreferences prefs = getActivity().getSharedPreferences(lootBoxCounterKey, Context.MODE_PRIVATE);
-        lootBoxCount = prefs.getInt(lootBoxCounterKey, 0);
+       lootBoxCount = CatContext.getIntRecord("lootBoxCounter", getContext());
         TextView lootBoxText = view.findViewById(R.id.lootBoxCount);
 
         lootBoxText.setText("You currently have " + lootBoxCount + " loot boxes");
@@ -111,5 +103,7 @@ public class ShopFragment extends Fragment {
 
 
     }
+
+
 }
 

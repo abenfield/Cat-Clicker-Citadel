@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.cis385.mssu.catclickercitadel.CatContext;
 import com.cis385.mssu.catclickercitadel.CatDictionary;
 import com.cis385.mssu.catclickercitadel.R;
 
@@ -44,8 +46,7 @@ public class SettingsFragment extends Fragment {
 
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        SharedPreferences prefs = getActivity().getSharedPreferences("meowEnabled", Context.MODE_PRIVATE);
-        final SharedPreferences.Editor editor = prefs.edit();
+
 
         Button clearDataButton =  getView().findViewById(R.id.clearDataButton);
 
@@ -60,14 +61,8 @@ public class SettingsFragment extends Fragment {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
-                                for (String temp : CatDictionary.catId) {
-                                    System.out.println(temp);
-                                    deleteCat(temp);
-                                }
-
-
-
-
+                                for (String catId : CatDictionary.catId)
+                                    CatContext.setBoolRecord(catId,getContext(),false);
 
 
                             }
@@ -82,31 +77,26 @@ public class SettingsFragment extends Fragment {
 
 
         ToggleButton meowToggle = (ToggleButton) getView().findViewById(R.id.meowToggle);
-
-        boolean checkState = prefs.getBoolean("meowEnabled",true);
+        boolean checkState =  CatContext.getBoolRecord("meowEnabled",getContext());
         meowToggle.setChecked(checkState);
 
         meowToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked){
-                editor.putBoolean("meowEnabled", true).commit();
+
+                    CatContext.setBoolRecord("meowEnabled",getContext(),true);
                 }
                 else
                 {
-                    editor.putBoolean("meowEnabled", false).commit();
+                    CatContext.setBoolRecord("meowEnabled",getContext(),false);
 
                 }
             }
         });
     }
 
-    private void deleteCat(String catId) {
-        SharedPreferences Robotprefs = getActivity().getSharedPreferences(catId, Context.MODE_PRIVATE);
-        final SharedPreferences.Editor editor = Robotprefs.edit();
 
-        editor.putBoolean(catId , false).commit();
-    }
 
 
 }
