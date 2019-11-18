@@ -17,6 +17,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.cis385.mssu.catclickercitadel.CatContext;
+import com.cis385.mssu.catclickercitadel.FortressDictionary;
 import com.cis385.mssu.catclickercitadel.LootBoxActivity;
 import com.cis385.mssu.catclickercitadel.R;
 import com.cis385.mssu.catclickercitadel.dialogs.BuyLootBoxDialog;
@@ -27,6 +28,8 @@ import com.cis385.mssu.catclickercitadel.dialogs.InsufficientFundsDialog;
 public class ShopFragment extends Fragment {
 
     int lootBoxCount;
+    int catCount;
+    int yarnCount;
     public static RefreshBool refreshBool = new RefreshBool();
     private ShopViewModel notificationsViewModel;
 
@@ -48,16 +51,23 @@ public class ShopFragment extends Fragment {
     }
 
 
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
 
         final View finalView = view;
+
+        for (String temp : FortressDictionary.fortressId) {
+            checkUnlockables(temp);
+        }
+
+
         updateLootBox(view);
-
-
+        updateCatCount(view);
+        refreshYarnCount(view);
         refreshBool.setListener(new RefreshBool.ChangeListener() {
             @Override
             public void onChange() {
                 updateLootBox(finalView);
+                updateCatCount(finalView);
             }
         });
 
@@ -74,6 +84,32 @@ public class ShopFragment extends Fragment {
                 }
 
           }});
+
+
+        final Button hutButton =  view.findViewById(R.id.hut_button);
+        hutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (yarnCount >= 10) {
+                    yarnCount = yarnCount -5 ;
+                    updateYarnCount(view);
+                    CatContext.setBoolRecord("hut",getContext(),true);
+                    hutButton.setText("Unlocked");
+                }
+            }});
+
+        final Button barrackButton =  view.findViewById(R.id.barrack_button);
+        barrackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (yarnCount >= 10) {
+                    yarnCount = yarnCount -5 ;
+                    updateYarnCount(view);
+                    CatContext.setBoolRecord("barrack",getContext(),true);
+                    barrackButton.setText("Unlocked");
+                }
+            }});
+
 
         openExchangeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +145,22 @@ public class ShopFragment extends Fragment {
 
         }
 
+    private void updateCatCount(View view) {
+        TextView catCounterText = view.findViewById(R.id.exchangeCatCounter);
+        catCount = CatContext.getIntRecord("catCounter",getContext());
+        catCounterText.setText(catCount + " cats");
+    }
 
+    private void updateYarnCount(View view) {
+       CatContext.setIntRecord("yarnCounter",getContext(),yarnCount);
+        TextView yarnCountText = getActivity().findViewById(R.id.yarnCounter);
+        yarnCountText.setText(String.valueOf(yarnCount));
+    }
+    private void refreshYarnCount(View view) {
+        yarnCount = CatContext.getIntRecord("yarnCounter",getContext());
+        TextView yarnCountText = getActivity().findViewById(R.id.yarnCounter);
+        yarnCountText.setText(String.valueOf(yarnCount));
+    }
 
     public void updateLootBox(View view) {
 
@@ -126,6 +177,28 @@ public class ShopFragment extends Fragment {
 
     }
 
+    private void checkUnlockables(String fortressId) {
+
+
+        int buttonId = getContext().getResources().getIdentifier(fortressId+ "_button", "id", "com.cis385.mssu.catclickercitadel");
+        try  {
+            Button button = getView().findViewById(buttonId);
+
+            SharedPreferences prefs = getActivity().getSharedPreferences(fortressId, Context.MODE_PRIVATE);
+
+            Boolean unlocked = prefs.getBoolean(fortressId,false);
+
+            if (unlocked == true) {
+                button.setText("Unlocked");
+                button.setClickable(false);
+
+            }
+        }
+        catch (Exception e){
+
+        }
+
+    }
 
 }
 

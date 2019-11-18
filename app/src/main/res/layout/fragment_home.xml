@@ -16,16 +16,61 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/score"
-            android:layout_width="95dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:textColor="#51F117"
-            android:textSize="36sp"
-            tools:layout_editor_absoluteX="4dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/catCounter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="430dp"
+                android:background="#ABD3EE"
+                android:gravity="center_horizontal"
+                android:inputType="textMultiLine"
+                android:text="@string/counter"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#207F96"
+                android:textSize="52sp"
+                app:autoSizeTextType="none"
+                app:fontFamily="sans-serif-light"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/clickCounter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ABD3EE"
+                android:gravity="center_horizontal"
+                android:inputType="textMultiLine"
+                android:text="0 Clicks"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#207F96"
+                android:textSize="24sp"
+                app:autoSizeTextType="none"
+                app:fontFamily="sans-serif-light"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/catCounter" />
+
+            <TextView
+                android:id="@+id/cpsCounter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ABD3EE"
+                android:gravity="center_horizontal"
+                android:inputType="textMultiLine"
+                android:text="0 Cats / Seconds"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#207F96"
+                android:textSize="24sp"
+                app:autoSizeTextType="none"
+                app:fontFamily="sans-serif-light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clickCounter" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
     <ImageView
@@ -68,71 +113,26 @@
         android:id="@+id/catLeaderLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
         android:background="#00EE1313"
         android:text="Current Cat Leader"
         android:textColor="#E0E0E0"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/catCounter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="430dp"
-            android:background="#ABD3EE"
-            android:gravity="center_horizontal"
-            android:inputType="textMultiLine"
-            android:text="@string/counter"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="#207F96"
-            android:textSize="52sp"
-            app:autoSizeTextType="none"
-            app:fontFamily="sans-serif-light"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/clickCounter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#ABD3EE"
-            android:gravity="center_horizontal"
-            android:inputType="textMultiLine"
-            android:text="0 Clicks"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="#207F96"
-            android:textSize="24sp"
-            app:autoSizeTextType="none"
-            app:fontFamily="sans-serif-light"
-            app:layout_constraintTop_toBottomOf="@+id/catCounter" />
-
-        <TextView
-            android:id="@+id/cpsCounter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#ABD3EE"
-            android:gravity="center_horizontal"
-            android:inputType="textMultiLine"
-            android:text="0 Cats / Seconds"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="#207F96"
-            android:textSize="24sp"
-            app:autoSizeTextType="none"
-            app:fontFamily="sans-serif-light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/clickCounter" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="95dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="210dp"
+        android:layout_marginRight="210dp"
+        android:textColor="#51F117"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/catLeaderLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

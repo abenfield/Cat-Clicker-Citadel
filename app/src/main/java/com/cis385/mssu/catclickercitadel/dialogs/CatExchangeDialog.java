@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.cis385.mssu.catclickercitadel.CatContext;
 import com.cis385.mssu.catclickercitadel.R;
+import com.cis385.mssu.catclickercitadel.ui.shop.ShopFragment;
 
 public class CatExchangeDialog {
     private Context context;
@@ -55,6 +56,7 @@ public class CatExchangeDialog {
                    incrementYarn(activity);
                    updateYarnCounter(activity);
                }
+                ShopFragment.refreshBool.setBoo(true);
 
                dialog.dismiss();
 

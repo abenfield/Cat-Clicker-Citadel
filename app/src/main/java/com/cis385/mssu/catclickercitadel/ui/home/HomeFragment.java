@@ -28,7 +28,8 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private int yarnCount;
-    private int score;
+    private int clickCount;
+    private int catCount;
     private int multiplier;
     private int autoclick;
     boolean autoToggle = false;
@@ -67,14 +68,13 @@ public class HomeFragment extends Fragment {
         updateYarnCounter();
 
 
+        clickCount = CatContext.getIntRecord("clickCounter",getContext());
+        catCount = CatContext.getIntRecord("catCounter",getContext());
+        final TextView catCountText = getView().findViewById(R.id.catCounter);
+        final TextView clickCountText = getView().findViewById(R.id.clickCounter);
 
-
-
-
-        score = CatContext.getIntRecord("catCounter",getContext());
-        final TextView textView = getView().findViewById(R.id.catCounter);
-
-        textView.setText(score + " Cats");
+        catCountText.setText(catCount + " Cats");
+        clickCountText.setText(clickCount + " Clicks");
 
         catLeaderImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,9 +84,14 @@ public class HomeFragment extends Fragment {
                 boolean checkState = prefs.getBoolean("meowEnabled", true);
                if (checkState)
                     mp.start();
-                score = (multiplier) + score;
-               textView.setText(score + " Cats");
-                CatContext.setIntRecord("catCounter",getContext(),score + 1);
+                catCount  = (multiplier) + catCount ;
+                clickCount  = clickCount + 1 ;
+
+                CatContext.setIntRecord("catCounter",getContext(),catCount  + 1);
+                CatContext.setIntRecord("clickCounter",getContext(),clickCount  + 1);
+
+                catCountText.setText(catCount  + " Cats");
+                clickCountText.setText(clickCount + " Clicks");
 
             }
         });
@@ -135,9 +140,9 @@ public class HomeFragment extends Fragment {
 
         while (true) {
 
-            score++;
-            textView.setText(score + " Cats");
-            CatContext.setIntRecord("catCounter",getContext(),score);
+            catCount ++;
+            textView.setText(catCount + " Cats");
+            CatContext.setIntRecord("catCounter",getContext(),catCount );
         }
 
     }
