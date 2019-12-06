@@ -140,7 +140,9 @@ public class HomeFragment extends Fragment {
         catCountText.setText(catCount  + " Cats");
         clickCountText.setText(clickCount + " Clicks");
 
-        cpsCountText.setText("+" + FortressDictionary.getCatsPerSecond(getContext()).toString());
+        int cpsAmount = FortressDictionary.getCatsPerSecond(getContext());
+        if (cpsAmount > 0)
+        cpsCountText.setText("+" + cpsAmount);
         Handler h = new Handler();
         h.postDelayed(new Runnable() {
             public void run() {

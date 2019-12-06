@@ -24,6 +24,42 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/castle" />
 
+        <ImageView
+            android:id="@+id/catLeader"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="76dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/catLeaderName"
+            app:srcCompat="@drawable/black_cat" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="95dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="120dp"
+            android:textColor="#51F117"
+            android:textSize="36sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/catLeaderName" />
+
+        <TextView
+            android:id="@+id/cpsScore"
+            android:layout_width="95dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="300dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="300dp"
+            android:textColor="#2196F3"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/catLeaderName"
             android:layout_width="match_parent"
@@ -37,17 +73,6 @@
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/catLeader"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_marginStart="72dp"
-            android:layout_marginLeft="72dp"
-            android:layout_marginTop="76dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/catLeaderName"
-            app:srcCompat="@drawable/black_cat" />
 
         <TextView
             android:id="@+id/catCounter"
@@ -131,24 +156,6 @@
                 android:visibility="gone"
                 app:autoSizeTextType="none"
                 app:fontFamily="sans-serif-light" />
-
-            <TextView
-                android:id="@+id/score"
-                android:layout_width="95dp"
-                android:layout_height="54dp"
-                android:layout_marginEnd="210dp"
-                android:textColor="#51F117"
-                android:textSize="36sp"
-                android:visibility="visible"
-                tools:layout_editor_absoluteY="100dp" />
-
-            <TextView
-                android:id="@+id/cpsScore"
-                android:layout_width="95dp"
-                android:layout_height="54dp"
-                android:layout_marginTop="200dp"
-                android:textColor="#2196F3"
-                android:textSize="36sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
