@@ -1,138 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/HomeFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:tag="home_fragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/castle"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="292dp"
+            android:background="#00BB0C0C"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/castle" />
+
+        <TextView
+            android:id="@+id/catLeaderName"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:background="#B3B1B1"
+            android:gravity="center_horizontal"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:text="Common House Cat"
+            android:textColor="#4B4B4B"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/catLeader"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="76dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/catLeaderName"
+            app:srcCompat="@drawable/black_cat" />
+
+        <TextView
+            android:id="@+id/catCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:background="@drawable/gold_texture"
+            android:gravity="center_horizontal"
+            android:inputType="textMultiLine"
+            android:text="@string/counter"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#B17914"
+            android:textSize="52sp"
+            android:visibility="visible"
+            app:autoSizeTextType="none"
+            app:fontFamily="sans-serif-light"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/castle" />
+
+        <TextView
+            android:id="@+id/cpsCounter"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:background="@drawable/blue_background"
+            android:gravity="center_horizontal"
+            android:inputType="textMultiLine"
+            android:text="0 Cats / Seconds"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#FFC107"
+            android:textSize="24sp"
+            android:visibility="visible"
+            app:autoSizeTextType="none"
+            app:fontFamily="sans-serif-light"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/catCounter" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="440dp"
-        android:layout_marginTop="70dp"
-        android:background="#D5BCF3ED"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constrainedWidth="false"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/background_gui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cardboard"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constrainedWidth="false">
 
             <TextView
-                android:id="@+id/catCounter"
+                android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="430dp"
-                android:background="#ABD3EE"
-                android:gravity="center_horizontal"
-                android:inputType="textMultiLine"
-                android:text="@string/counter"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="#207F96"
-                android:textSize="52sp"
-                app:autoSizeTextType="none"
-                app:fontFamily="sans-serif-light"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text="TextView"
+                android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/clickCounter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ABD3EE"
+                android:background="#2A8BCC"
                 android:gravity="center_horizontal"
                 android:inputType="textMultiLine"
                 android:text="0 Clicks"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="#207F96"
                 android:textSize="24sp"
+                android:visibility="gone"
                 app:autoSizeTextType="none"
-                app:fontFamily="sans-serif-light"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/catCounter" />
+                app:fontFamily="sans-serif-light" />
 
             <TextView
-                android:id="@+id/cpsCounter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ABD3EE"
-                android:gravity="center_horizontal"
-                android:inputType="textMultiLine"
-                android:text="0 Cats / Seconds"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="#207F96"
-                android:textSize="24sp"
-                app:autoSizeTextType="none"
-                app:fontFamily="sans-serif-light"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/clickCounter" />
+                android:id="@+id/score"
+                android:layout_width="95dp"
+                android:layout_height="54dp"
+                android:layout_marginEnd="210dp"
+                android:textColor="#51F117"
+                android:textSize="36sp"
+                android:visibility="visible"
+                tools:layout_editor_absoluteY="100dp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/cpsScore"
+                android:layout_width="95dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="200dp"
+                android:textColor="#2196F3"
+                android:textSize="36sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/catLeader2"
+                android:layout_width="275dp"
+                android:layout_height="308dp"
+                android:layout_marginEnd="32dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/cat" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/castle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#00BB0C0C"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/castle" />
-
-    <ImageView
-        android:id="@+id/catLeader"
-        android:layout_width="275dp"
-        android:layout_height="308dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-        android:layout_marginTop="76dp"
-        android:clickable="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cat" />
-
-    <TextView
-        android:id="@+id/catLeaderName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:background="#B3B1B1"
-        android:gravity="center_horizontal"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:text="Common House Cat"
-        android:textColor="#222222"
-        android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@+id/catLeaderLabel"
-        tools:layout_editor_absoluteX="32dp" />
-
-    <TextView
-        android:id="@+id/catLeaderLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:background="#00EE1313"
-        android:text="Current Cat Leader"
-        android:textColor="#E0E0E0"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/score"
-        android:layout_width="95dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="210dp"
-        android:layout_marginRight="210dp"
-        android:textColor="#51F117"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/catLeaderLabel" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</android.widget.LinearLayout>

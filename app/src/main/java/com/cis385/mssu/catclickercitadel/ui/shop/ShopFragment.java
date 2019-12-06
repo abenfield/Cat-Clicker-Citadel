@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,6 @@ import com.cis385.mssu.catclickercitadel.FortressDictionary;
 import com.cis385.mssu.catclickercitadel.LootBoxActivity;
 import com.cis385.mssu.catclickercitadel.R;
 import com.cis385.mssu.catclickercitadel.dialogs.BuyLootBoxDialog;
-import com.cis385.mssu.catclickercitadel.dialogs.CatExchangeDialog;
 import com.cis385.mssu.catclickercitadel.dialogs.InsufficientFundsDialog;
 
 
@@ -38,13 +38,7 @@ public class ShopFragment extends Fragment {
         notificationsViewModel =
                 ViewModelProviders.of(this).get(ShopViewModel.class);
         View root = inflater.inflate(R.layout.fragment_shop, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
-        notificationsViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
 
 
         return root;
@@ -53,26 +47,26 @@ public class ShopFragment extends Fragment {
 
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
 
+
+
+        int ok = FortressDictionary.getCatsPerSecond(getContext());
         final View finalView = view;
 
         for (String temp : FortressDictionary.fortressId) {
             checkUnlockables(temp);
         }
-
-
         updateLootBox(view);
-        updateCatCount(view);
+
         refreshYarnCount(view);
         refreshBool.setListener(new RefreshBool.ChangeListener() {
             @Override
             public void onChange() {
                 updateLootBox(finalView);
-                updateCatCount(finalView);
             }
         });
 
         Button lootBoxButton = view.findViewById(R.id.lootButton);
-        Button openExchangeButton = view.findViewById(R.id.openExchangeButton);
+        Button openExchangeButton = view.findViewById(R.id.exchangeYarnButton);
         Button buyLootBoxButton = view.findViewById(R.id.buyLootBoxButton);
 
         lootBoxButton.setOnClickListener(new View.OnClickListener() {
@@ -90,38 +84,30 @@ public class ShopFragment extends Fragment {
         hutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (yarnCount >= 10) {
-                    yarnCount = yarnCount -5 ;
-                    updateYarnCount(view);
-                    CatContext.setBoolRecord("hut",getContext(),true);
-                    hutButton.setText("Unlocked");
-                }
+              purchaseUpgrade(hutButton, v, 10,"hut");
             }});
 
-        final Button barrackButton =  view.findViewById(R.id.barrack_button);
-        barrackButton.setOnClickListener(new View.OnClickListener() {
+        final Button barracksButton =  view.findViewById(R.id.barracks_button);
+        barracksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (yarnCount >= 10) {
-                    yarnCount = yarnCount -5 ;
-                    updateYarnCount(view);
-                    CatContext.setBoolRecord("barrack",getContext(),true);
-                    barrackButton.setText("Unlocked");
-                }
+                purchaseUpgrade(barracksButton, v, 20,"barracks");
             }});
 
-
-        openExchangeButton.setOnClickListener(new View.OnClickListener() {
+        final Button monasteryButton =  view.findViewById(R.id.monastery_button);
+        monasteryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (CatContext.getIntRecord("catCounter", getContext()) >= 10000){
-                    CatExchangeDialog menu = new CatExchangeDialog(getContext());
-                    menu.showDialog(getActivity());
-                }
-                      else {
-                    InsufficientFundsDialog menu = new InsufficientFundsDialog(getContext());
-                    menu.showDialog(getActivity());
-                }}});
+                purchaseUpgrade(monasteryButton, v, 30,"monastery");
+            }});
+
+        final Button towerButton =  view.findViewById(R.id.tower_button);
+        towerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                purchaseUpgrade(towerButton, v, 50,"tower");
+            }});
+
 
         buyLootBoxButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,18 +124,18 @@ public class ShopFragment extends Fragment {
 
             }});
 
-
-
-
-
-
         }
 
-    private void updateCatCount(View view) {
-        TextView catCounterText = view.findViewById(R.id.exchangeCatCounter);
-        catCount = CatContext.getIntRecord("catCounter",getContext());
-        catCounterText.setText(catCount + " cats");
-    }
+    private void purchaseUpgrade(Button upgradeButton, View view, int cost, String record) {
+                    if (yarnCount >= cost && upgradeButton.getText() != "Unlocked") {
+                        yarnCount = yarnCount - cost;
+                        updateYarnCount(view);
+                        CatContext.setBoolRecord(record, getContext(), true);
+                        upgradeButton.setText("Unlocked");
+                    }
+
+            }
+
 
     private void updateYarnCount(View view) {
        CatContext.setIntRecord("yarnCounter",getContext(),yarnCount);
@@ -181,9 +167,11 @@ public class ShopFragment extends Fragment {
 
 
         int buttonId = getContext().getResources().getIdentifier(fortressId+ "_button", "id", "com.cis385.mssu.catclickercitadel");
-        try  {
+
             Button button = getView().findViewById(buttonId);
 
+            if (button != null)
+            {
             SharedPreferences prefs = getActivity().getSharedPreferences(fortressId, Context.MODE_PRIVATE);
 
             Boolean unlocked = prefs.getBoolean(fortressId,false);
@@ -194,9 +182,7 @@ public class ShopFragment extends Fragment {
 
             }
         }
-        catch (Exception e){
 
-        }
 
     }
 

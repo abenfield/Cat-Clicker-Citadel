@@ -11,7 +11,7 @@
         android:id="@+id/a"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:background="#DA5F6A"
+        android:background="@android:drawable/status_bar_item_app_background"
         android:gravity="center"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_play" />

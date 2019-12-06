@@ -40,6 +40,7 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:cropToPadding="false"
+        android:onClick="yarnExchangeOpen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/yarn_counter" />
@@ -55,4 +56,5 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

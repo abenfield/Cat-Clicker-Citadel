@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.cis385.mssu.catclickercitadel.CatContext;
+import com.cis385.mssu.catclickercitadel.CatDictionary;
 import com.cis385.mssu.catclickercitadel.R;
 
 public class CatSelectDialog  {
@@ -28,6 +30,14 @@ public class CatSelectDialog  {
 
         Button okButton = (Button) dialog.findViewById(R.id.close_button);
         Button selectButton = (Button) dialog.findViewById(R.id.select_button);
+
+        TextView catDescription = dialog.findViewById(R.id.catDescription);
+
+        catDescription.setText(CatDictionary.catLookup(catName,"description"));
+
+        TextView catText = dialog.findViewById(R.id.catName);
+
+        catText.setText(CatDictionary.catLookup(catName,"name"));
 
 
         final ImageView selectedCat = dialog.findViewById(R.id.selectedCat);

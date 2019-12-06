@@ -42,7 +42,7 @@
                     android:layout_width="20dp"
                     android:layout_height="211dp"
                     android:layout_weight="1"
-                    android:background="#00CCCAC9"
+                    android:background="#00969696"
                     android:clickable="true"
                     android:onClick="openDialog"
                     android:tag="cat"
@@ -159,21 +159,23 @@
                     app:srcCompat="@drawable/locked_cat" />
 
                 <ImageView
-                    android:id="@+id/null6"
+                    android:id="@+id/santa_cat"
                     android:layout_width="20dp"
                     android:layout_height="211dp"
                     android:layout_weight="1"
                     android:background="#00CCCAC9"
-                    android:tag="cat"
+                    android:onClick="openDialog"
+                    android:tag="santa_cat"
                     app:srcCompat="@drawable/locked_cat" />
 
                 <ImageView
-                    android:id="@+id/null7"
+                    android:id="@+id/hanukkah_cat"
                     android:layout_width="20dp"
                     android:layout_height="211dp"
                     android:layout_weight="1"
                     android:background="#00CCCAC9"
-                    android:tag="cat"
+                    android:onClick="openDialog"
+                    android:tag="hanukkah_cat"
                     app:srcCompat="@drawable/locked_cat" />
 
             </LinearLayout>

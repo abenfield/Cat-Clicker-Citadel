@@ -15,18 +15,25 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="156dp"
+                android:layout_height="79dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/shop_sign" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/lootBoxCard"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="41dp"
+                android:layout_height="150dp"
                 app:cardBackgroundColor="#6DE2D6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="224dp">
+                    android:layout_height="224dp"
+                    android:background="@drawable/blue_paper">
 
                     <TextView
                         android:id="@+id/lootBoxCount"
@@ -34,17 +41,16 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="You currently have 0 Lootboxes"
+                        android:textColor="#FFFFFF"
                         android:textSize="24sp" />
 
                     <Button
                         android:id="@+id/lootButton"
-                        android:layout_width="108dp"
-                        android:layout_height="48dp"
+                        android:layout_width="97dp"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/lootBoxCount"
                         android:layout_marginStart="284dp"
-                        android:layout_marginLeft="284dp"
-                        android:layout_marginTop="78dp"
-                        android:layout_marginBottom="124dp"
+                        android:layout_marginTop="31dp"
                         android:background="#4196AD"
                         android:text="Open LootBox" />
 
@@ -54,81 +60,20 @@
                         android:layout_height="50dp"
                         android:layout_below="@id/lootBoxCount"
                         android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="78dp"
-                        android:layout_marginBottom="124dp"
+                        android:layout_marginTop="31dp"
                         android:background="#6CDF7C"
                         android:text="Buy Lootbox" />
 
                     <ImageView
                         android:id="@+id/imageView"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="124dp"
+                        android:layout_height="90dp"
                         android:layout_below="@id/lootBoxCount"
+                        android:layout_centerHorizontal="false"
                         android:layout_marginStart="12dp"
-                        android:layout_marginLeft="28dp"
-                        android:layout_marginTop="31dp"
                         android:layout_toRightOf="@id/buyLootBoxButton"
+                        android:paddingLeft="25dp"
                         app:srcCompat="@drawable/box_close" />
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/exchangeCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="#4DAF69"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/catEchangeLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:text="Exchange Cats?"
-                        android:textSize="30sp" />
-
-                    <ImageView
-                        android:id="@+id/exchangeIcon"
-                        android:layout_width="200dp"
-                        android:layout_height="100dp"
-                        android:layout_below="@id/catEchangeLabel"
-                        android:layout_centerHorizontal="true"
-                        app:srcCompat="@drawable/exchange" />
-
-                    <TextView
-                        android:id="@+id/exchangeCatLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/exchangeIcon"
-                        android:layout_centerInParent="true"
-                        android:text="You currently have"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/exchangeCatCounter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/exchangeCatLabel"
-                        android:layout_centerInParent="true"
-                        android:text="## Cats"
-                        android:textSize="24sp" />
-
-                    <Button
-                        android:id="@+id/openExchangeButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/exchangeCatCounter"
-                        android:layout_centerHorizontal="true"
-                        android:background="#FF5722"
-                        android:text="exchange cats for yarn" />
-
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
@@ -136,20 +81,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="50dp">
+                android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/hutCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="#BD8D2C">
+                    android:layout_weight="1">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="220dp"
+                        android:background="@drawable/paper"
+                        android:scaleType="fitXY">
 
 
                         <TextView
@@ -175,7 +120,7 @@
                             android:layout_below="@id/hutImageView"
                             android:layout_centerHorizontal="false"
                             android:gravity="center_horizontal"
-                            android:text="Cost: 10 Yarn\nAutomatically generates 1 Cat every 5 seconds." />
+                            android:text="Cost: 10 Yarn\nAutomatically generates 1 Cat every second" />
 
                         <Button
                             android:id="@+id/hut_button"
@@ -191,20 +136,21 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/hutCard2"
+                    android:id="@+id/barracksCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="#BD8D2C">
+                    app:cardBackgroundColor="#00BD8D2C">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="220dp"
+                        android:background="@drawable/paper">
 
 
                         <TextView
-                            android:id="@+id/barrackLabel"
+                            android:id="@+id/barracksLabel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="false"
@@ -212,27 +158,137 @@
                             android:text="Barrack Upgrade" />
 
                         <ImageView
-                            android:id="@+id/barrackImageView"
+                            android:id="@+id/barracksImageView"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:layout_below="@id/barrackLabel"
+                            android:layout_below="@id/barracksLabel"
                             android:layout_centerHorizontal="true"
                             app:srcCompat="@drawable/fortress" />
 
                         <TextView
-                            android:id="@+id/barrackDescription"
+                            android:id="@+id/barracksDescription"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/barrackImageView"
+                            android:layout_below="@id/barracksImageView"
                             android:layout_centerHorizontal="false"
                             android:gravity="center_horizontal"
-                            android:text="Cost: 20 Yarn\nAutomatically generates 5 Cat every 5 seconds." />
+                            android:text="Cost: 20 Yarn\nAutomatically generates 5 Cat every second." />
 
                         <Button
-                            android:id="@+id/barrack_button"
+                            android:id="@+id/barracks_button"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
-                            android:layout_below="@id/barrackDescription"
+                            android:layout_below="@id/barracksDescription"
+                            android:layout_centerHorizontal="true"
+                            android:background="#348D40"
+                            android:text="Buy" />
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="50dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/monasteryCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:background="@drawable/paper"
+                        android:scaleType="fitXY">
+
+
+                        <TextView
+                            android:id="@+id/monasteryLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="false"
+                            android:gravity="center_horizontal"
+                            android:text="Monastery Upgrade" />
+
+                        <ImageView
+                            android:id="@+id/monasteryImageView"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_below="@id/monasteryLabel"
+                            android:layout_centerHorizontal="true"
+                            app:srcCompat="@drawable/church" />
+
+                        <TextView
+                            android:id="@+id/monasteryDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/monasteryImageView"
+                            android:layout_centerHorizontal="false"
+                            android:gravity="center_horizontal"
+                            android:text="Cost: 30 Yarn\nAutomatically generates 10 Cat every second." />
+
+                        <Button
+                            android:id="@+id/monastery_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_below="@id/monasteryDescription"
+                            android:layout_centerHorizontal="true"
+                            android:background="#348D40"
+                            android:text="Buy" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/towerCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="#00BD8D2C">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:background="@drawable/paper">
+
+
+                        <TextView
+                            android:id="@+id/towerLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="false"
+                            android:gravity="center_horizontal"
+                            android:text="Tower Upgrade" />
+
+                        <ImageView
+                            android:id="@+id/towerImageView"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_below="@id/towerLabel"
+                            android:layout_centerHorizontal="true"
+                            app:srcCompat="@drawable/tower" />
+
+                        <TextView
+                            android:id="@+id/towerDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/towerImageView"
+                            android:layout_centerHorizontal="false"
+                            android:gravity="center_horizontal"
+                            android:text="Cost: 50 Yarn\nAutomatically generates 50 cats every second." />
+
+                        <Button
+                            android:id="@+id/tower_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_below="@id/towerDescription"
                             android:layout_centerHorizontal="true"
                             android:background="#348D40"
                             android:text="Buy" />
@@ -244,19 +300,6 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <TextView
-        android:id="@+id/text_notifications"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </RelativeLayout>

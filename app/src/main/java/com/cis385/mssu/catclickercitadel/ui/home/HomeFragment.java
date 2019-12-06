@@ -1,7 +1,5 @@
 package com.cis385.mssu.catclickercitadel.ui.home;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,11 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.cis385.mssu.catclickercitadel.CatContext;
+import com.cis385.mssu.catclickercitadel.FortressDictionary;
 import com.cis385.mssu.catclickercitadel.MainActivity;
 import com.cis385.mssu.catclickercitadel.R;
-
-import org.w3c.dom.Text;
-
 
 
 public class HomeFragment extends Fragment {
@@ -31,14 +27,13 @@ public class HomeFragment extends Fragment {
     private int clickCount;
     private int catCount;
     private int multiplier;
-    private int autoclick;
+
     boolean autoToggle = false;
 
     MediaPlayer mp;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, @Nullable Bundle savedInstanceState) {
-
 
 
 
@@ -56,32 +51,34 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
+        clickCount = CatContext.getIntRecord("clickCounter",getContext());
+        catCount = CatContext.getIntRecord("catCounter",getContext());
+        CatLeader currentCat = new CatLeader(getContext());
+
+        multiplier = currentCat.getMultiplier();
+
+        initGUI();
+
+
         ImageView catLeaderImage = getView().findViewById(R.id.catLeader);
         TextView catLeaderName = getView().findViewById(R.id.catLeaderName);
 
 
-        CatLeader currentCat = new CatLeader(getContext());
         catLeaderName.setText(currentCat.getCatName());
         catLeaderImage.setImageResource(currentCat.getRestId());
-        multiplier = currentCat.getMultiplier();
+
 
         updateYarnCounter();
 
 
-        clickCount = CatContext.getIntRecord("clickCounter",getContext());
-        catCount = CatContext.getIntRecord("catCounter",getContext());
-        final TextView catCountText = getView().findViewById(R.id.catCounter);
-        final TextView clickCountText = getView().findViewById(R.id.clickCounter);
 
-        catCountText.setText(catCount + " Cats");
-        clickCountText.setText(clickCount + " Clicks");
+        updateCatCountGUI(catCount);
 
         catLeaderImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 bounceCat();
-                SharedPreferences prefs = getActivity().getSharedPreferences("meowEnabled", Context.MODE_PRIVATE);
-                boolean checkState = prefs.getBoolean("meowEnabled", true);
+                boolean checkState = CatContext.getBoolRecord("meowEnabled",getContext());
                if (checkState)
                     mp.start();
                 catCount  = (multiplier) + catCount ;
@@ -90,11 +87,69 @@ public class HomeFragment extends Fragment {
                 CatContext.setIntRecord("catCounter",getContext(),catCount  + 1);
                 CatContext.setIntRecord("clickCounter",getContext(),clickCount  + 1);
 
-                catCountText.setText(catCount  + " Cats");
-                clickCountText.setText(clickCount + " Clicks");
+
 
             }
         });
+
+
+
+        ((MainActivity)getActivity()).triggerCps();
+
+        checkUpgrades();
+
+    }
+
+    private void checkUpgrades() {
+       ImageView castle = getView().findViewById(R.id.castle);
+
+       boolean unlocked = CatContext.getBoolRecord("hut",getContext());
+
+        if (unlocked == true)
+        {
+            castle.setImageResource(R.drawable.castle_hut);
+        }
+    }
+
+
+    private void initGUI() {
+
+         final TextView cpsText = getView().findViewById(R.id.cpsCounter);
+         final TextView catCountText = getView().findViewById(R.id.catCounter);
+        final TextView clickCountText = getView().findViewById(R.id.clickCounter);
+
+
+        cpsText.setText(FortressDictionary.getCatsPerSecond(getContext()) + " Cats / Second");
+
+        catCountText.setText(catCount  + " Cats");
+        clickCountText.setText(clickCount + " Clicks");
+
+        CatContext.setIntRecord("catCounter",getContext(),catCount );
+
+    }
+
+
+
+
+
+    public void updateCatCountGUI(int catCount) {
+        final TextView catCountText = getView().findViewById(R.id.catCounter);
+        final TextView clickCountText = getView().findViewById(R.id.clickCounter);
+        final      TextView cpsCountText = getView().findViewById(R.id.cpsScore);
+
+        catCountText.setText(catCount  + " Cats");
+        clickCountText.setText(clickCount + " Clicks");
+
+        cpsCountText.setText("+" + FortressDictionary.getCatsPerSecond(getContext()).toString());
+        Handler h = new Handler();
+        h.postDelayed(new Runnable() {
+            public void run() {
+                cpsCountText.setText("");
+            }
+
+        }, 100);
+
+        CatContext.setIntRecord("catCounter",getContext(),catCount );
 
     }
 
@@ -131,23 +186,6 @@ public class HomeFragment extends Fragment {
         }, 100);
 
 }
-
-
-    public void autoClicker(){
-
-        final TextView textView = (TextView) getView().findViewById(R.id.catCounter);
-
-
-        while (true) {
-
-            catCount ++;
-            textView.setText(catCount + " Cats");
-            CatContext.setIntRecord("catCounter",getContext(),catCount );
-        }
-
-    }
-
-
 
     }
 

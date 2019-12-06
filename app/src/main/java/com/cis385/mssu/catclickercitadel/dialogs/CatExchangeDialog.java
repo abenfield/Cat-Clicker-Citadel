@@ -56,6 +56,11 @@ public class CatExchangeDialog {
                    incrementYarn(activity);
                    updateYarnCounter(activity);
                }
+               else
+               {
+                   InsufficientFundsDialog menu = new InsufficientFundsDialog(context);
+                   menu.showDialog(activity);
+               }
                 ShopFragment.refreshBool.setBoo(true);
 
                dialog.dismiss();

@@ -39,7 +39,7 @@ public class CatContext {
 
     public static boolean getBoolRecord (String recordName, Context context) {
 
-        SharedPreferences preference = context.getSharedPreferences("meowEnabled", MODE_PRIVATE);
+        SharedPreferences preference = context.getSharedPreferences(recordName, MODE_PRIVATE);
         return preference.getBoolean(recordName, false);
 
 

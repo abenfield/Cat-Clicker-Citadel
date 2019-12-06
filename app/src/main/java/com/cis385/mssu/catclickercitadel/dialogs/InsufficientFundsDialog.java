@@ -55,17 +55,6 @@ public class InsufficientFundsDialog {
 
     }
 
-    private void decrementYarn(Activity activity) {
-
-        CatContext.setIntRecord("yarnCounter",context, yarnCount - 3);
-
-    }
-
-    private void incrementLootBox(Activity activity) {
-
-        int lootBoxCount = CatContext.getIntRecord("lootBoxCounter",context);
-        ;
-        CatContext.setIntRecord("lootBoxCounter",context, lootBoxCount + 1);
 
 
 
@@ -75,14 +64,4 @@ public class InsufficientFundsDialog {
 
 
 
-    private void updateYarnCounter(Activity activity) {
-        int yarnCount = CatContext.getIntRecord("yarnCounter",context);
-        TextView yarnCountText = activity.findViewById(R.id.yarnCounter);
-        yarnCountText.setText(String.valueOf(yarnCount));
-
-    }
-
-
-
-}
 
